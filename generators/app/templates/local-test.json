@@ -1,0 +1,17 @@
+{
+  "drachtio": {
+    "host": "127.0.0.1",
+    "port": 9060,
+    "secret": "cymru"
+  },
+<% if (useFsmrf) { -%>
+  "freeswitch": [{
+    "address": "127.0.0.1",
+    "port": 9070,
+    "secret": "ClueCon"
+  }],
+<% } -%>
+  "logging": {
+    "level": "info"
+  }
+}

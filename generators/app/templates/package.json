@@ -1,0 +1,24 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.1",
+  "main": "app.js",
+  "engines": {
+    "node": ">= 8.10.0"
+  },
+  "keywords": [
+    "sip",
+    "drachtio"
+  ],
+  "author": "",
+  "license": "",
+  "scripts": {
+    "start": "node app",
+<% if (!test) { -%>
+    "test": "echo \"Error: no test specified\" && exit 1",
+<% } else { -%>
+    "test": "NODE_ENV=test node test/ | ./node_modules/.bin/tap-spec",
+    "coverage": "NODE_ENV=test ./node_modules/.bin/istanbul cover test/ --report html",
+<% } -%>
+  "jslint": "eslint app.js lib"
+  }
+}
