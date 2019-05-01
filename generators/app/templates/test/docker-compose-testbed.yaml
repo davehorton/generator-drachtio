@@ -20,7 +20,7 @@ services:
 
 <% if (useFsmrf) { -%>
   freeswitch:
-    image: drachtio/drachtio-freeswitch-mrf:latest
+    image: drachtio/drachtio-freeswitch-mrf:1.8-slim
     command: freeswitch --sip-port 5060 --rtp-range-start 20000 --rtp-range-end 20040
     container_name: freeswitch
     ports:
