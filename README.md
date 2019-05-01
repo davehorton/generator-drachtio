@@ -60,5 +60,5 @@ $ npm run jslint
 <br>
 
 ## Little help?
-I'm by no means a yeoman expert, and this generator is lacking a few niceties (e.g. doesn't prompt for things like author, description, license, etc).  If anyone would like to help improve it I would love PRs on [github](https://github.com/davehorton/generator-drachtio) 
+I'm by no means a yeoman expert, and this generator is lacking a few niceties (e.g. doesn't prompt for things like author, description, license, etc).  If anyone would like to help improve it I would love PRs.
 
