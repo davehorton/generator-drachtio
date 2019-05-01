@@ -135,7 +135,8 @@ module.exports = class extends Generator {
         'clear-module',
         'tap',
         'tap-dot',
-        'tap-spec'
+        'tap-spec',
+        'istanbul@^1.0.0-alpha.2'
       );
     }
     this.npmInstall(dependencies);
