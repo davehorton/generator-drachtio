@@ -32,7 +32,7 @@ module.exports = class extends Generator {
       {
         type: 'checkbox',
         name: 'handles',
-        message: 'Check the sip request types your app wants to handle',
+        message: 'Which sip request types will you handle',
         choices: msgTypes,
         default: ['invite']
       },
