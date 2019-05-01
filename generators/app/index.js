@@ -119,7 +119,6 @@ module.exports = class extends Generator {
       devDepdencies.push(
         'blue-tape',
         'clear-module',
-        'istanbul',
         'tap',
         'tap-dot',
         'tap-spec'

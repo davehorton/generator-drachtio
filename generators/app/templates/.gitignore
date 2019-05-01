@@ -36,4 +36,3 @@ node_modules
 .DS_Store
 
 examples/*
-logs.txt
