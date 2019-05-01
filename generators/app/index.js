@@ -27,7 +27,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'name',
         message: 'Enter the application name',
-        default: this.appname 
+        default: this.appname.replace(/\s+/g, '-')
       },
       {
         type: 'checkbox',
@@ -55,14 +55,28 @@ module.exports = class extends Generator {
     [
       'package.json', 
       'app.js', 
-      '.eslintrc.json', 
-      '.eslintignore', 
-      '.gitignore',
       'README.md'
     ].forEach((p) => {
       this.fs.copyTpl(
         this.templatePath(p),
         this.destinationPath(p),
+        {
+          name: this.answers.name,
+          useFsmrf: this.answers.useFsmrf,
+          test: this.answers.test,
+          handles: this.answers.handles
+        }
+      );  
+    });
+
+    [
+      'eslintrc.json', 
+      'eslintignore', 
+      'gitignore'
+    ].forEach((p) => {
+      this.fs.copyTpl(
+        this.templatePath(p),
+        this.destinationPath(`.${p}`),
         {
           name: this.answers.name,
           useFsmrf: this.answers.useFsmrf,
