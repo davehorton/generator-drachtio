@@ -15,41 +15,52 @@ function connect(connectable) {
   });
 }
 
-test.skip('startup and connect', (t) => {
-  const {srf} = require('../app');
+<% if (handles.includes('invite')) { -%>
+test('invite handler', (t) => {
+  clearModule('../app');
+  const {srf, disconnectMs} = require('../app');
 
   connect(srf)
     .then(() => {
-      t.pass('connected ok');
+      return sippUac('uac-pcap.xml');
+    })
+    .then(() => {
+      t.pass('successfully connected call');
+      if (srf.locals.lb) srf.locals.lb.disconnect();
       srf.disconnect();
       t.end();
       return;
     })
     .catch((err) => {
+      if (srf.locals.lb) srf.locals.lb.disconnect();
       if (srf) srf.disconnect();
       console.log(`error received: ${err}`);
       t.error(err);
     });
 });
+<% } -%>
 
-test('expect 480', (t) => {
+<% handles.filter((m) => m !== 'invite').forEach((m) => { -%>
+test('<%= m %> handler', (t) => {
   clearModule('../app');
   const {srf} = require('../app');
 
   connect(srf)
     .then(() => {
-      return sippUac('uac-expect-480.xml');
+      return sippUac('uac-<%= m %>-expect-480.xml');
     })
     .then(() => {
-      t.pass('successfully returned 480 to invite...not get to work!');
+      t.pass('<%= m %> handler passed');
+      if (srf.locals.lb) srf.locals.lb.disconnect();
       srf.disconnect();
       t.end();
       return;
     })
     .catch((err) => {
+      if (srf.locals.lb) srf.locals.lb.disconnect();
       if (srf) srf.disconnect();
       console.log(`error received: ${err}`);
       t.error(err);
     });
 });
-
+<% }); -%>

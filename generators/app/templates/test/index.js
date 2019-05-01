@@ -1,3 +1,3 @@
 require('./docker_start');
-require('./call-tests');
+require('./sip-tests');
 require('./docker_stop');

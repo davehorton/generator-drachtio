@@ -25,7 +25,7 @@
   <send retrans="500">
     <![CDATA[
 
-      INVITE sip:[service]@[remote_ip]:[remote_port];dst=sip%3A172.38.0.13 SIP/2.0
+      INVITE sip:[service]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
       From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
       To: [service] <sip:[service]@[remote_ip]:[remote_port]>
@@ -90,16 +90,7 @@
 
   <!-- Pause 8 seconds, which is approximately the duration of the      -->
   <!-- PCAP file                                                        -->
-  <pause milliseconds="8000"/>
-
-  <!-- Play an out of band DTMF '1'                                     -->
-  <nop>
-    <action>
-      <exec play_pcap_audio="pcap/dtmf_2833_1.pcap"/>
-    </action>
-  </nop>
-
-  <pause milliseconds="1000"/>
+  <pause milliseconds="4000"/>
 
   <!-- The 'crlf' option inserts a blank line in the statistics report. -->
   <send retrans="500">

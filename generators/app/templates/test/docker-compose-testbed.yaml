@@ -33,7 +33,7 @@ services:
   sipp-uas:
     image: drachtio/sipp:latest
     command: sipp -sf /tmp/uas.xml
-    container_name: sipp-uas
+    container_name: sipp-uas.local
     volumes:
       - ./scenarios:/tmp
     tty: true

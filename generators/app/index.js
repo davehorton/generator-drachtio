@@ -77,7 +77,10 @@ module.exports = class extends Generator {
         this.fs.copyTpl(
           this.templatePath('handler-boilerplate.js'),
           this.destinationPath(`lib/${t}.js`),
-          {method: t}
+          {
+            useFsmrf: this.answers.useFsmrf,
+            method: t
+          }
         );
       }
     });
@@ -88,38 +91,42 @@ module.exports = class extends Generator {
         this.destinationPath('test'),
         {
           appname: this.answers.name,
-          useFsmrf: this.answers.useFsmrf
+          useFsmrf: this.answers.useFsmrf,
+          handles: this.answers.handles
         }
       );
       this.fs.copyTpl(
         this.templatePath('local-test.json'),
         this.destinationPath('config/local-test.json'),
         {
-          useFsmrf: this.answers.useFsmrf,
+          useFsmrf: this.answers.useFsmrf
         }
       );
     }
 
     // install base dependencies
-    this.npmInstall(['drachtio-srf', 'pino', 'config']);
-    this.npmInstall(['eslint', 'eslint-plugin-promise'], {'save-dev': true});
+    const dependencies = ['drachtio-srf', 'pino', 'config'];
+    const devDepdencies = ['eslint', 'eslint-plugin-promise'];
 
     // options
     if (this.answers.useFsmrf) {
-      this.npmInstall(['drachtio-fsmrf']);
+      dependencies.push('drachtio-fsmrf', 'drachtio-fn-fsmrf-sugar');
     }
     if (this.answers.handles.includes('register')) {
-      this.npmInstall(['drachtio-mw-registration-parser']);
+      dependencies.push('drachtio-mw-registration-parser');
     }
     if (this.answers.test) {
-      this.npmInstall([
+      devDepdencies.push(
         'blue-tape',
         'clear-module',
         'istanbul',
         'tap',
         'tap-dot',
         'tap-spec'
-      ], {'save-dev': true});
+      );
     }
+    this.npmInstall(dependencies);
+    this.npmInstall(devDepdencies, {'save-dev': true});
+
   }
 };

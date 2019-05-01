@@ -20,5 +20,8 @@
     "coverage": "NODE_ENV=test ./node_modules/.bin/istanbul cover test/ --report html",
 <% } -%>
   "jslint": "eslint app.js lib"
+  },
+  "devDependencies": {
+    "istanbul": "^1.0.0-alpha.2"
   }
 }

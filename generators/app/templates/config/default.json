@@ -4,6 +4,13 @@
     "port": 9022,
     "secret": "cymru"
   },
+<% if (useFsmrf) { -%>
+    "freeswitch": [{
+      "address": "127.0.0.1",
+      "port": 8021,
+      "secret": "ClueCon"
+    }],
+<% } -%>  
   "logging": {
     "level": "info"
   }
