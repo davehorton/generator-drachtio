@@ -136,7 +136,7 @@ module.exports = class extends Generator {
         'tap',
         'tap-dot',
         'tap-spec',
-        'istanbul@^1.0.0-alpha.2'
+        'nyc'
       );
     }
     this.npmInstall(dependencies);
